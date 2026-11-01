@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="dark">
+<title>Crate Bridge — Rekordbox ⇄ Serato</title>
+<meta name="description" content="Restore Rekordbox playlists for Serato, carry over cues and beatgrids, and compare your libraries. Runs entirely in your browser.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23b7a8ff'/%3E%3Cstop offset='1' stop-color='%236c4cff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='9' fill='url(%23g)'/%3E%3Cpath d='M7 21v-3a9 9 0 0118 0v3' stroke='%23fff' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3Ccircle cx='7' cy='22' r='2.2' fill='%23fff'/%3E%3Ccircle cx='25' cy='22' r='2.2' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/boot.js"></script>
+</head>
+<body>
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+  <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b7a8ff"/><stop offset="1" stop-color="#6c4cff"/></linearGradient>
+  <symbol id="logo" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="url(#lg)"/><path d="M7 21v-3a9 9 0 0118 0v3" stroke="#fff" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="7" cy="22" r="2.2" fill="#fff"/><circle cx="25" cy="22" r="2.2" fill="#fff"/></symbol>
+</defs></svg>
+<a class="skip" href="#main">Skip to content</a>
+<div class="orbs" aria-hidden="true"></div>
+
+<nav class="island" id="island" aria-label="Main">
+  <a class="brand" href="#top" aria-label="Crate Bridge, home"><svg class="logo" aria-hidden="true"><use href="#logo"/></svg>Crate Bridge</a>
+  <div class="links">
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+    <a href="#app">Workspace</a>
+  </div>
+  <a class="btn pri sm" href="#app">Open app<span class="ico" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></span></a>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+</nav>
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
+  <div class="ol">
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+    <a href="#app">Workspace</a>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <span class="pill">Rekordbox ⇄ Serato</span>
+  <h1>Your library,<br>on both decks.</h1>
+  <p class="lead">Restore Rekordbox playlists for Serato, carry over cues and beatgrids, and compare your libraries — all inside your browser.</p>
+  <div class="cta">
+    <a class="btn pri" href="#app">Open Crate Bridge<span class="ico" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></span></a>
+    <a class="btn ghost" href="#how">See how it works</a>
+  </div>
+  <ul class="support" id="support" aria-label="Browser support">
+    <li class="ok" data-b="chrome"><i aria-hidden="true"></i>Chrome<span class="sr"> — supported</span></li>
+    <li class="ok" data-b="edge"><i aria-hidden="true"></i>Edge<span class="sr"> — supported</span></li>
+    <li class="ok" data-b="opera"><i aria-hidden="true"></i>Opera<span class="sr"> — supported</span></li>
+    <li class="flag" data-b="brave"><i aria-hidden="true"></i>Brave<small>needs a flag</small><span class="sr"> — works after you enable a browser flag</span></li>
+    <li class="no" data-b="safari"><i aria-hidden="true"></i>Safari<span class="sr"> — not supported</span></li>
+    <li class="no" data-b="firefox"><i aria-hidden="true"></i>Firefox<span class="sr"> — not supported</span></li>
+  </ul>
+  <div class="stage reveal" aria-hidden="true">
+    <div class="pane">
+      <span class="pill">Rekordbox</span>
+      <ul><li><i></i>Warm-up<em>42</em></li><li><i></i>Peak time<em>118</em></li><li><i></i>Late night<em>67</em></li></ul>
+    </div>
+    <svg class="arch" viewBox="0 0 220 90" fill="none"><path class="rail" d="M10 80C10 20 210 20 210 80"/><path class="flow" d="M10 80C10 20 210 20 210 80"/><circle cx="10" cy="80" r="4"/><circle cx="210" cy="80" r="4"/></svg>
+    <div class="pane">
+      <span class="pill">Serato</span>
+      <ul><li><i></i>Warm-up<em>42 · cues</em></li><li><i></i>Peak time<em>118 · cues</em></li><li><i></i>Late night<em>67 · cues</em></li></ul>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <section class="block" id="features">
+    <div class="head reveal"><span class="pill">Features</span><h2 class="title">Everything between two libraries.</h2><p class="lead">One tool for the whole move — playlists, cues, grids, and the housekeeping that goes with them.</p></div>
+    <div class="bento feat">
+      <article class="card reveal f1"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 7.5a2 2 0 012-2h4l2 2h7a2 2 0 012 2v8a2 2 0 01-2 2h-13a2 2 0 01-2-2z"/><path d="M12 11v5M9.8 13.8L12 16l2.2-2.2"/></svg><h3>Restore playlists</h3><p>Rebuild your crates from a Rekordbox USB export. One folder per playlist, your folder hierarchy kept, ready for Serato.</p><div class="chips"><span>Folders</span><span>.m3u8</span><span>Serato crates</span></div></article>
+      <article class="card reveal f2"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h2l2-5 3 10 3-8 2 3h4"/></svg><h3>Cues &amp; beatgrids travel</h3><p>Hot cues, memory cues and beatgrids are written into the copies as Serato tags. Your originals are never touched.</p></article>
+      <article class="card reveal f3"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg><h3>Library diff</h3><p>See exactly what one library has that the other doesn't.</p></article>
+      <article class="card reveal f4"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 8h13M13.5 4.5L17 8l-3.5 3.5M20 16H7M10.5 12.5L7 16l3.5 3.5"/></svg><h3>Serato → Rekordbox</h3><p>Export crates as a rekordbox.xml with cues and grids.</p></article>
+      <article class="card reveal f5"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8.5" y="8.5" width="11" height="11" rx="2.5"/><path d="M15.5 5.5a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2"/></svg><h3>Duplicates &amp; missing files</h3><p>Spot double copies and relink lost files from your music folders.</p></article>
+      <article class="card reveal f6"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="8" cy="15" r="4"/><path d="M11 12l8-8M16 7l2.5 2.5M13.5 9.5L15 11"/></svg><h3>Key converter</h3><p>Camelot, Open Key and standard notation, side by side.</p></article>
+      <article class="card reveal f7"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="10.5" width="14" height="9.5" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 017 0v2.5"/></svg><h3>Private by design</h3><p>Crate Bridge reads and writes your folders directly in the browser. Nothing is uploaded, and there's no account to create.</p></article>
+    </div>
+  </section>
+
+  <section class="block" id="how">
+    <div class="head reveal"><span class="pill">How it works</span><h2 class="title">Three steps, no uploads.</h2></div>
+    <ol class="steps">
+      <li class="card reveal"><span class="num">01</span><h3>Connect</h3><p>Pick your Rekordbox USB and your <code>_Serato_</code> folder. They're read in place.</p></li>
+      <li class="card reveal"><span class="num">02</span><h3>Choose</h3><p>Select playlists and a destination. Decide whether to embed cues and write Serato crates.</p></li>
+      <li class="card reveal"><span class="num">03</span><h3>Bridge</h3><p>Tracks are copied, tags written, crates created. Restart Serato and play.</p></li>
+    </ol>
+  </section>
+
+  <section class="block" id="app">
+    <div class="head reveal"><span class="pill">Workspace · Beta</span><h2 class="title">Open Crate Bridge.</h2><p class="lead">Desktop Chrome, Edge or Opera (Brave needs a flag). Pick a tool, connect your libraries, go.</p><p class="note"><strong>Vibe-coded with Claude Code.</strong> It may have bugs or stop working. Your original files are never modified, but please keep a backup of your libraries.</p></div>
+    <div id="unsupported" class="card warn hide">
+    <b>This browser can't access folders.</b> Crate Bridge needs the File System Access API — please use desktop Chrome, Edge, Brave or Opera.
+  </div>
+    <div class="tabs" id="tabs" role="group" aria-label="Tools">
+      <button data-tab="restore" class="on" aria-current="page">Restore playlists</button>
+      <button data-tab="diff">Library diff</button>
+      <button data-tab="xml">Serato → Rekordbox</button>
+      <button data-tab="dupes">Duplicates</button>
+      <button data-tab="relink">Missing files</button>
+      <button data-tab="keys">Keys</button>
+    </div>
+    <div class="sec">
+    <h3 class="sub">Connect your libraries</h3>
+    <div class="bento">
+      <div class="card reveal src s1">
+        <svg class="glyph" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="9" width="12" height="12" rx="2.5"/><path d="M9.5 9V4h5v5M10.5 14h.01M13.5 14h.01"/></svg>
+        <h3 class="src-t">Rekordbox USB</h3>
+        <div class="mute" id="usbInfo">Pick the drive's root folder — the one containing <code>PIONEER</code>.</div>
+        <button id="pickUsb">Choose USB…</button>
+      </div>
+      <div class="card reveal src s2">
+        <svg class="glyph" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.6"/><path d="M12 3.5a8.5 8.5 0 018.5 8.5"/></svg>
+        <h3 class="src-t">Serato library</h3>
+        <div class="mute" id="seInfo">Pick your <code>_Serato_</code> folder, usually in <code>~/Music</code>.</div>
+        <button id="pickSerato">Choose _Serato_…</button>
+      </div>
+      <div class="card reveal src s3">
+        <svg class="glyph" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 7.5a2 2 0 012-2h4l2 2h7a2 2 0 012 2v8a2 2 0 01-2 2h-13a2 2 0 01-2-2z"/></svg>
+        <h3 class="src-t">Music folders</h3>
+        <div class="mute" id="rootsInfo">Folders with your audio files. Used to find Serato tracks, locate missing files and relink.</div>
+        <button id="addRoot">Add folder…</button>
+      </div>
+    </div>
+    <div class="err" id="srcErr" role="alert"></div>
+  </div>
+    <section id="tab-restore" class="tab">
+    <div class="card reveal">
+      <h2 class="eyebrow">1 · Playlists</h2>
+      <div class="row"><button id="plAll">All</button><button id="plNone">None</button><input type="text" id="plFilter" aria-label="Filter playlists" placeholder="Filter…"><span class="mute" id="plSel"></span></div>
+      <div class="list" id="plList" role="group" aria-label="Playlists"><div class="empty">Choose the Rekordbox USB first.</div></div>
+      <div class="mute" id="statProg"></div>
+    </div>
+    <div class="card reveal">
+      <h2 class="eyebrow">2 · Destination &amp; options</h2>
+      <div class="row"><button id="pickDest">Choose destination folder…</button><span id="destName" class="mute">none chosen</span></div>
+      <div class="opts">
+        <label><input type="checkbox" id="oTree" checked><span>Keep Rekordbox folder hierarchy<small>Folders become nested folders / sub-crates</small></span></label>
+        <label><input type="checkbox" id="oNum"><span>Prefix with playlist position (001 - …)<small>Keeps Rekordbox order when sorted by name</small></span></label>
+        <label><input type="checkbox" id="oM3u" checked><span>Write .m3u8 per playlist</span></label>
+        <label><input type="checkbox" id="oEmbed" checked><span>Embed hot cues + beatgrid for Serato<small>Written into the <i>copies</i> only (MP3, WAV, AIFF). Memory cues fill free hot-cue slots.</small></span></label>
+        <label><input type="checkbox" id="oSearch" checked><span>Look for missing files in my Music folders</span></label>
+        <label><input type="checkbox" id="oDry"><span>Dry run<small>Check everything, copy nothing</small></span></label>
+      </div>
+      <div class="opts">
+        <label class="col"><span>Create Serato crates</span>
+          <input type="text" id="oAbs" placeholder="Absolute path of the destination, e.g. /Users/you/Music/Restored">
+          <small>Leave empty to skip crates. With a Serato library chosen above, crates are written straight into it; otherwise into a folder to copy by hand. Quit Serato first.</small></label>
+        <label class="col"><span>Parent crate name</span><input type="text" id="oParent" value="Rekordbox"><small>All restored crates go inside it (empty = top level)</small></label>
+      </div>
+      <div class="row mt14"><button class="pri" id="go">Copy tracks<span class="ico" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></span></button><button id="cancel" class="hide">Cancel</button><span class="mute" id="summary"></span></div>
+    </div>
+    <div class="card reveal hide" id="prog">
+      <h2 class="eyebrow">Progress</h2>
+      <div class="bar" id="bar" role="progressbar" aria-label="Copy progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="barfill"></i></div>
+      <div class="mute mt8" id="ptext"></div>
+      <div class="err" id="perr"></div>
+      <div class="sr" role="status" id="announce"></div>
+      <div class="tip hide" id="after"><b>Next in Serato DJ:</b> restart Serato. If you wrote crates they appear in the crate list. Otherwise drag the destination folder from the Files panel onto the crate area.</div>
+    </div>
+  </section>
+
+  <section id="tab-diff" class="tab hide"><div class="card reveal">
+    <h2 class="eyebrow">Library diff</h2>
+    <div class="mute">Which tracks does Rekordbox have that Serato doesn't, and the other way round? Matched by file name and artist/title.</div>
+    <div class="row mt10"><button class="pri" id="diffGo">Compare<span class="ico" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></span></button><span class="mute" id="diffSum" role="status"></span></div>
+    <div class="cols"><div><h3>Only in Rekordbox <button class="mini" data-csv="diffRb" aria-label="Download CSV"><span aria-hidden="true">CSV</span></button></h3><div class="list" id="diffRb"></div></div>
+    <div><h3>Only in Serato <button class="mini" data-csv="diffSe" aria-label="Download CSV"><span aria-hidden="true">CSV</span></button></h3><div class="list" id="diffSe"></div></div></div>
+  </div></section>
+
+  <section id="tab-xml" class="tab hide"><div class="card reveal">
+    <h2 class="eyebrow">Serato → Rekordbox</h2>
+    <div class="mute">Exports Serato crates as a <code>rekordbox.xml</code> including hot cues and beatgrids read from the files. Import it in Rekordbox via Preferences → Advanced → Database → rekordbox xml, then drag the playlists into your collection.</div>
+    <div class="row mt10"><button id="xmlAll">All</button><button id="xmlNone">None</button><span class="mute" id="xmlSel"></span></div>
+    <div class="list" id="xmlList" role="group" aria-label="Serato crates"><div class="empty">Choose the Serato library first.</div></div>
+    <label class="inl"><input type="checkbox" id="xCues" checked> Read cues &amp; beatgrid from the audio files (needs the files reachable via Music folders)</label>
+    <div class="row mt10"><button class="pri" id="xmlGo">Build rekordbox.xml<span class="ico" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></span></button><span class="mute" id="xmlProg" role="status"></span></div>
+    <div class="err" id="xmlErr" role="alert"></div>
+  </div></section>
+
+  <section id="tab-dupes" class="tab hide"><div class="card reveal">
+    <h2 class="eyebrow">Duplicates</h2>
+    <div class="row"><select id="dupSrc" aria-label="Library to search for duplicates"><option value="rb">Rekordbox USB</option><option value="se">Serato library</option></select><button class="pri" id="dupGo">Find duplicates<span class="ico" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></span></button><span class="mute" id="dupSum" role="status"></span></div>
+    <div class="list" id="dupList"></div>
+  </div></section>
+
+  <section id="tab-relink" class="tab hide"><div class="card reveal">
+    <h2 class="eyebrow">Missing files</h2>
+    <div class="mute">Finds tracks whose file is gone and looks for same-named files in your Music folders.</div>
+    <div class="row mt10"><select id="relSrc" aria-label="Library to check for missing files"><option value="rb">Rekordbox USB</option><option value="se">Serato library</option></select><button class="pri" id="relGo">Check<span class="ico" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></span></button><button class="mini" data-csv="relList" aria-label="Download CSV"><span aria-hidden="true">CSV</span></button><span class="mute" id="relSum" role="status"></span></div>
+    <div class="list" id="relList"></div>
+  </div></section>
+
+  <section id="tab-keys" class="tab hide"><div class="card reveal">
+    <h2 class="eyebrow">Key converter</h2>
+    <div class="row"><input type="text" id="keyIn" aria-label="Key to convert" placeholder="e.g. 8A, 1m, F#m, Bb major"><span id="keyOut" class="mute"></span></div>
+    <h3 class="mt16">Library keys <button class="mini" data-csv="keyList" aria-label="Download CSV"><span aria-hidden="true">CSV</span></button></h3>
+    <div class="row"><select id="keySrc" aria-label="Library to list keys for"><option value="rb">Rekordbox USB</option><option value="se">Serato library</option></select><input type="text" id="keyFilter" aria-label="Filter tracks" placeholder="Filter…"></div>
+    <div class="list" id="keyList"></div>
+  </div></section>
+
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-in">
+    <a class="brand" href="#top" aria-label="Crate Bridge, back to top"><svg class="logo" aria-hidden="true"><use href="#logo"/></svg>Crate Bridge</a>
+    <p class="mute">Everything runs locally in your browser. Nothing is uploaded.</p>
+    <a class="mute" href="https://github.com/RZFX/Crate-Bridge">GitHub</a>
+  </div>
+  <p class="legal"><strong>Built with Claude Code.</strong> Crate Bridge is vibe-coded — it may have bugs or stop working. It never modifies your original files, but keep a backup of your libraries. Crate Bridge is an independent project and isn't affiliated with or endorsed by AlphaTheta (Pioneer DJ) or Serato. Rekordbox and Serato DJ are trademarks of their respective owners.</p>
+</footer>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
