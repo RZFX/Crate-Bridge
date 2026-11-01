@@ -8,6 +8,7 @@
 and compare your libraries — entirely inside your browser.
 
 [![CI](https://github.com/RZFX/Crate-Bridge/actions/workflows/ci.yml/badge.svg)](https://github.com/RZFX/Crate-Bridge/actions/workflows/ci.yml)
+[![Live site](https://img.shields.io/badge/live-rzfx.github.io%2FCrate--Bridge-6c4cff)](https://rzfx.github.io/Crate-Bridge/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![Runtime dependencies: 0](https://img.shields.io/badge/runtime%20dependencies-0-brightgreen)
 ![Network requests: none](https://img.shields.io/badge/network%20requests-none-6c4cff)
@@ -41,6 +42,10 @@ and compare your libraries — entirely inside your browser.
 
 ## Quick start
 
+**Just use it:** open **<https://rzfx.github.io/Crate-Bridge/>** in desktop Chrome, Edge or Opera. It runs entirely in your browser — nothing is uploaded.
+
+**Or run it locally**
+
 **macOS** — double-click **`Crate Bridge.command`**. It starts a small local server and opens Crate Bridge in
 Chrome, Edge or Opera. Keep the window open while you work; close it to stop.
 Prefer a Dock app without a Terminal window? Run `tools/make-mac-app.sh` once.
@@ -53,7 +58,7 @@ cd Crate-Bridge
 npm start            # → http://localhost:8765  (open it in Chrome, Edge or Opera)
 ```
 
-No install step — there are no packages to install. A hosted version on GitHub Pages is planned for release.
+No install step — there are no packages to install.
 
 ### Using it
 
